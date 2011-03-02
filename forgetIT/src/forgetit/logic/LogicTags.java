@@ -4,6 +4,7 @@ import java.util.List;
 
 import forgetit.common.Tag;
 import forgetit.logic.interfaces.ILogicInternalTags;
+import forgetit.logic.note.LogicTagsInternal;
 
 /**
  * 
@@ -17,7 +18,7 @@ public class LogicTags implements ILogicTags {
 	
 	private ILogicInternalTags internalTags;
 	public LogicTags(){
-		//TODO create instance of class implementing ILogicInternalTags
+		internalTags = new LogicTagsInternal();
 	}
 
 	@Override

@@ -8,6 +8,7 @@ import forgetit.common.Date;
 import forgetit.common.Note;
 import forgetit.common.Tag;
 import forgetit.logic.interfaces.ILogicInternalNoteProvider;
+import forgetit.logic.note.LogicNoteProviderInternal;
 
 
 /**
@@ -22,7 +23,7 @@ public class LogicNoteProvider implements ILogicNoteProvider {
 	
 	private ILogicInternalNoteProvider internalNoteProvider;
 	public LogicNoteProvider(){
-		//TODO create instance of ILogicInternalNoteProvider implementing class
+		internalNoteProvider = new LogicNoteProviderInternal();
 	}
 
 	@Override
