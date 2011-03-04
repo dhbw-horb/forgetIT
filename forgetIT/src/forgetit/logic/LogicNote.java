@@ -2,6 +2,7 @@ package forgetit.logic;
 
 import forgetit.common.Note;
 import forgetit.logic.interfaces.ILogicInternalNote;
+import forgetit.logic.note.LogicNoteInternal;
 
 /**
  * 
@@ -16,7 +17,7 @@ public class LogicNote implements ILogicNote {
 	
 	private ILogicInternalNote internalNote;
 	public LogicNote(){
-		//TODO Create an Instance of implementing class of ILogicInternalNote
+		internalNote = new LogicNoteInternal();
 	}
 
 	@Override
