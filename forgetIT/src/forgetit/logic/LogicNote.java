@@ -1,6 +1,6 @@
 package forgetit.logic;
 
-import forgetit.common.Note;
+import forgetit.common.Entity;
 import forgetit.logic.interfaces.ILogicInternalNote;
 import forgetit.logic.note.LogicNoteInternal;
 
@@ -21,20 +21,20 @@ public class LogicNote implements ILogicNote {
 	}
 
 	@Override
-	public void addNote(Note note) {
+	public void addNote(Entity note) {
 		internalNote.addNote(note);
 		
 
 	}
 
 	@Override
-	public void deleteNode(Note note) {
+	public void deleteNode(Entity note) {
 		internalNote.deleteNode(note);
 
 	}
 
 	@Override
-	public void changeNote(Note note) {
+	public void changeNote(Entity note) {
 		internalNote.changeNote(note);
 
 	}

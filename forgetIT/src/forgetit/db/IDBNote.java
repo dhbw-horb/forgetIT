@@ -1,6 +1,6 @@
 package forgetit.db;
 
-import forgetit.common.Note;
+import forgetit.common.Entity;
 
 /**
  * 
@@ -15,15 +15,15 @@ public interface IDBNote {
 	 * 
 	 * @param note the note to be added
 	 */
-	public void addNote(Note note);
+	public void addNote(Entity note);
 	/**
 	 * 
 	 * @param note the note, which should be deleted
 	 */
-	public void deleteNode(Note note);
+	public void deleteNode(Entity note);
 	/**
 	 * Update an existing note
 	 * @param note the note you've changed
 	 */
-	public void changeNote(Note note);
+	public void changeNote(Entity note);
 }

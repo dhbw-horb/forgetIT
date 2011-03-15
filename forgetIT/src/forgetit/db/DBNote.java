@@ -1,6 +1,6 @@
 package forgetit.db;
 
-import forgetit.common.Note;
+import forgetit.common.Entity;
 
 /**
  * 
@@ -13,19 +13,19 @@ import forgetit.common.Note;
 public class DBNote implements IDBNote {
 
 	@Override
-	public void addNote(Note note) {
+	public void addNote(Entity note) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void deleteNode(Note note) {
+	public void deleteNode(Entity note) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void changeNote(Note note) {
+	public void changeNote(Entity note) {
 		// TODO Auto-generated method stub
 
 	}
