@@ -5,7 +5,7 @@ import java.util.List;
 
 
 import forgetit.common.Date;
-import forgetit.common.Note;
+import forgetit.common.Entity;
 import forgetit.common.Tag;
 import forgetit.logic.interfaces.ILogicInternalNoteProvider;
 import forgetit.logic.note.LogicNoteProviderInternal;
@@ -27,22 +27,22 @@ public class LogicNoteProvider implements ILogicNoteProvider {
 	}
 
 	@Override
-	public List<Note> getNotes() {
+	public List<Entity> getNotes() {
 		return internalNoteProvider.getNotes();
 	}
 
 	@Override
-	public List<Note> getNotes(Date startDate, Date endDate) {
+	public List<Entity> getNotes(Date startDate, Date endDate) {
 		return getNotes(startDate, endDate);
 	}
 
 	@Override
-	public List<Note> getNotes(Date startDate, Date endDate, List<Tag> tags) {
+	public List<Entity> getNotes(Date startDate, Date endDate, List<Tag> tags) {
 		return internalNoteProvider.getNotes(startDate, endDate, tags);
 	}
 
 	@Override
-	public List<Note> getNotes(List<Tag> tags) {
+	public List<Entity> getNotes(List<Tag> tags) {
 		return internalNoteProvider.getNotes(tags);
 	}
 

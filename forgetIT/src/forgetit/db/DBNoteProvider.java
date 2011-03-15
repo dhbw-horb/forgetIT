@@ -3,7 +3,7 @@ package forgetit.db;
 import java.util.List;
 
 import forgetit.common.Date;
-import forgetit.common.Note;
+import forgetit.common.Entity;
 import forgetit.common.Tag;
 /**
  * 
@@ -16,25 +16,25 @@ import forgetit.common.Tag;
 public class DBNoteProvider implements IDBNoteProvider {
 
 	@Override
-	public List<Note> getNotes() {
+	public List<Entity> getNotes() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Note> getNotes(Date startDate, Date endDate) {
+	public List<Entity> getNotes(Date startDate, Date endDate) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Note> getNotes(Date startDate, Date endDate, List<Tag> tags) {
+	public List<Entity> getNotes(Date startDate, Date endDate, List<Tag> tags) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Note> getNotes(List<Tag> tags) {
+	public List<Entity> getNotes(List<Tag> tags) {
 		// TODO Auto-generated method stub
 		return null;
 	}

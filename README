@@ -5,6 +5,9 @@ For read-only-access pull from: git://github.com/dhbw-horb/forgetIT.git
 To join the development of forgetIT fork this project and send pull request to...
 	-gui: git://github.com/ChornHulio/forgetIT-gui.git
 	-logic: git://github.com/David-Henn/forgetIT-logic.git
-	-database: ???
+	-database: git://github.com/opimusprime42/forgetIT-data.git
 
 To use the SWT libraries (GUI-Toolkit of forgetIT) use these instructions: http://www.eclipse.org/swt/eclipse.php
+
+More information can be found on our wiki
+https://github.com/dhbw-horb/forgetIT/wiki
