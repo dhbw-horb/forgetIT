@@ -1,78 +1,36 @@
 package forgetit.gui;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 public class MainWindow {
 	
 	private Shell shell = null;
-
+	
 	public MainWindow(Display display) {
 		shell = new Shell(display);
 		shell.setText("forgetIT");
 		
-		// set Layout
-		GridLayout gridLayout = new GridLayout(5,true);
-		shell.setLayout(gridLayout);
-		
-		// Color for widget
-		Color wColor = new Color(display, 200, 200, 200);
-		
-		// Search
-		Text search = new Text(shell, SWT.SINGLE);
-		search.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 4, 1));
-		
-		// Settings
-		Button settings = new Button(shell, SWT.PUSH);
-		settings.setText("Settings");
-		settings.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
-		settings.addSelectionListener(new SelectionAdapter() {
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                // TODO show Dialog for settings
-            }
-        });
-		
-		// space of time
-		Label dates = new Label(shell, SWT.CENTER);
-		dates.setText("Placeholder for space of time");
-		dates.setBackground(wColor);
-		dates.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 2, 3));
-		
-		// Tags
-		Label tags = new Label(shell, SWT.CENTER);
-		tags.setText("Placeholder for tags");
-		tags.setBackground(wColor);
-		tags.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 3, 3));
-		
-		// Calendar
-		Label calendar = new Label(shell, SWT.CENTER);
-		calendar.setText("Placeholder for the calendar");
-		calendar.setBackground(wColor);
-		calendar.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 2, 10));
-		
-		// To-Do
-		Label todos = new Label(shell, SWT.CENTER);
-		todos.setText("Placeholder for todos");
-		todos.setBackground(wColor);
-		todos.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 3, 5));
-		
-		// Notes
-		Label notes = new Label(shell, SWT.CENTER);
-		notes.setText("Placeholder for notes");
-		notes.setBackground(wColor);
-		notes.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 3, 5));
+		// define outter layout
+		GridLayout outterLayout = new GridLayout();		
+		outterLayout.numColumns = 8;
+		shell.setLayout(outterLayout);
 
-        // resize shell to contents
+		// init row by row
+		initFirstRow();
+		initSecondRow();
+		initContentView();
+
+		// resize shell to contents
         shell.pack();
         // open shell
 		shell.open();
@@ -83,5 +41,77 @@ public class MainWindow {
 			}
 		}
 	}
+	
+	private void initFirstRow() {
+		// searchBar
+		GridData gridData = new GridData();
+		gridData.horizontalAlignment = GridData.FILL;
+		gridData.grabExcessHorizontalSpace = true;
+		gridData.horizontalSpan = 7;
+		Text text = new Text(shell, SWT.SINGLE);		
+		text.setLayoutData(gridData);
+		
+		// settings button
+		gridData = new GridData();
+		gridData.horizontalAlignment = GridData.FILL;
+		gridData.horizontalSpan = 1;
+		Button settings = new Button(shell, SWT.PUSH);
+		settings.setLayoutData(gridData);
+		settings.setText("Config");		
+		settings.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                // TODO show Dialog for settings
+            }
+        });		
+	}
+	
+	private void initSecondRow() {
+		// date
+		GridData gridData = new GridData(GridData.BEGINNING,GridData.BEGINNING,false,false);
+		gridData.horizontalSpan = 3;
+		gridData.verticalSpan = 3;
+		Composite comDate = new Composite(shell, SWT.NONE);
+		comDate.setLayoutData(gridData);
+		comDate.setLayout(new FillLayout());
+		new ViewDate(comDate);
+		
+		// tags
+		gridData = new GridData(GridData.FILL,GridData.BEGINNING,true,false);
+		gridData.horizontalSpan = 5;
+		gridData.verticalSpan = 3;
+		Composite comTags = new Composite(shell, SWT.NONE);
+		comTags.setLayoutData(gridData);
+		comTags.setLayout(new FillLayout());
+		new ViewTags(comTags);
+	}
 
+	private void initContentView() {
+		// calendar
+		GridData gridData = new GridData(GridData.FILL,GridData.FILL,true,true);
+		gridData.horizontalSpan = 4;
+		gridData.verticalSpan = 8;
+		Composite comCal = new Composite(shell, SWT.NONE);
+		comCal.setLayoutData(gridData);
+		comCal.setLayout(new FillLayout());
+		new ViewCalendar(comCal);
+		
+		// todos
+		gridData = new GridData(GridData.FILL,GridData.FILL,true,true);
+		gridData.horizontalSpan = 4;
+		gridData.verticalSpan = 4;
+		Composite comTodo = new Composite(shell, SWT.NONE);
+		comTodo.setLayoutData(gridData);
+		comTodo.setLayout(new FillLayout());
+		new ViewTodo(comTodo);
+		
+		// notes
+		gridData = new GridData(GridData.FILL,GridData.FILL,true,true);
+		gridData.horizontalSpan = 4;
+		gridData.verticalSpan = 4;
+		Composite comNotes = new Composite(shell, SWT.NONE);
+		comNotes.setLayoutData(gridData);
+		comNotes.setLayout(new FillLayout());
+		new ViewNotes(comNotes);
+	}	
 }
