@@ -50,5 +50,11 @@ public class TestCalendar {
 			Assert.assertTrue(false);
 		}
 	}
+	
+	@Test public void today(){
+		Calendar cal = new Calendar();
+		Date today = cal.today();
+		System.out.println(today.toString());
+	}
 
 }

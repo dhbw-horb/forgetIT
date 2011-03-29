@@ -35,4 +35,9 @@ public interface ICalendar {
 	 */
 	public Date subtractDays(int days, Date date) throws Exception;
 
+	/**
+	 * 
+	 * @return the date of today
+	 */
+	public Date today();
 }

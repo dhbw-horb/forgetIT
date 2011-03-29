@@ -71,5 +71,13 @@ public class Calendar implements ICalendar {
 				cal.get(java.util.Calendar.DAY_OF_MONTH), cal.get(java.util.Calendar.HOUR_OF_DAY), cal.get(java.util.Calendar.MINUTE));
 		return earlierDate;
 	}
+	
+	public Date today(){
+		GregorianCalendar cal = new GregorianCalendar();
+		cal.setTimeZone( TimeZone.getTimeZone("CET") );
+		Date date = new Date(cal.get(java.util.Calendar.YEAR), cal.get(java.util.Calendar.MONTH), 
+				cal.get(java.util.Calendar.DAY_OF_MONTH),cal.get(java.util.Calendar.HOUR_OF_DAY),cal.get(java.util.Calendar.MINUTE));
+		return date;
+	}
 
 }
