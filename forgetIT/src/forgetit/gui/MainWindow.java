@@ -3,6 +3,7 @@ package forgetit.gui;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -44,20 +45,28 @@ public class MainWindow {
 	
 	private void initFirstRow() {
 		// searchBar
-		GridData gridData = new GridData();
-		gridData.horizontalAlignment = GridData.FILL;
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.horizontalSpan = 7;
+		GridData gridData = new GridData(GridData.FILL, GridData.FILL, true, false);
+		gridData.horizontalSpan = 6;
 		Text text = new Text(shell, SWT.SINGLE);		
 		text.setLayoutData(gridData);
 		
+		// add button
+		gridData = new GridData(GridData.END, GridData.END, false, false);
+		Button add = new Button(shell, SWT.PUSH);
+		add.setLayoutData(gridData);
+		add.setImage(new Image(shell.getDisplay(), "res/addIcon.png"));
+		add.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                // TODO show Dialog for adding entities
+            }
+        });		
+		
 		// settings button
-		gridData = new GridData();
-		gridData.horizontalAlignment = GridData.FILL;
-		gridData.horizontalSpan = 1;
+		gridData = new GridData(GridData.END, GridData.END, false, false);
 		Button settings = new Button(shell, SWT.PUSH);
 		settings.setLayoutData(gridData);
-		settings.setText("Config");		
+		settings.setImage(new Image(shell.getDisplay(), "res/settingsIcon.png"));
 		settings.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
