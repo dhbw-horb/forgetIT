@@ -13,6 +13,6 @@
 	<classpathentry kind="lib" path="lib/hibernate3/lib/required/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/hibernate3/lib/jpa/hibernate-jpa-2.0-api-1.0.0.Final.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.swt"/>
-	<classpathentry kind="lib" path="lib/sqljet/sqljet.1.0.3.b914.jar"/>
+	<classpathentry kind="lib" path="lib/hsqldb/hsqldb.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
