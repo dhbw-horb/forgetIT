@@ -6,34 +6,53 @@ import java.util.List;
 import forgetit.common.Date;
 import forgetit.common.Entity;
 import forgetit.common.Tag;
-import forgetit.logic.Calendar;
 import forgetit.logic.ILogicNote;
 import forgetit.logic.ILogicNoteProvider;
 import forgetit.logic.ILogicTags;
+import forgetit.logic.interfaces.ICalendar;
 
 public class GraphicsModel {
 	
 	private ILogicTags logicTags = null;
 	private ILogicNote logicNotes = null;
 	private ILogicNoteProvider provider = null;
+	private ICalendar cal = null;
 		
 	private Date startDate = null;
 	private Date endDate = null;
 	private List<Tag> tags = new LinkedList<Tag>();
 	
 	
-	public GraphicsModel(ILogicTags lt, ILogicNote ln, ILogicNoteProvider provider) {
+	public GraphicsModel(ILogicTags lt, ILogicNote ln, ILogicNoteProvider provider, ICalendar cal) {
 		this.provider = provider;
 		this.logicTags = lt;
 		this.logicNotes = ln;
+		this.cal = cal;
+		this.startDate = this.getToday();
+		this.endDate = this.getToday();
+		this.tags = this.getTags();
 	}
 	
-	public void setStartDate(Date date) {
-		startDate = date;
+	public void setStartDate(Date date) throws IllegalArgumentException {
+		if(cal.checkDate(date)) {
+			startDate = date;
+		} else {
+			throw new IllegalArgumentException("That's not a date");
+		}
+	}	
+	public Date getStartDate() {
+		return startDate;
 	}
 	
-	public void setEndDate(Date date) {
-		endDate = date;
+	public void setEndDate(Date date) throws IllegalArgumentException {
+		if(cal.checkDate(date)) {
+			endDate = date;
+		} else {
+			throw new IllegalArgumentException("That's not a date");
+		}
+	}
+	public Date getEndDate() {
+		return endDate;
 	}
 	
 	public void setTagsList(List<Tag> tags) {
@@ -41,7 +60,7 @@ public class GraphicsModel {
 	}
 	
 	public Date getToday() {
-		return new Calendar().today();
+		return cal.today();
 	}
 	
 	public List<Tag> getTags() {

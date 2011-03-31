@@ -72,6 +72,7 @@ public class Calendar implements ICalendar {
 		return earlierDate;
 	}
 	
+	@Override
 	public Date today(){
 		GregorianCalendar cal = new GregorianCalendar();
 		cal.setTimeZone( TimeZone.getTimeZone("CET") );
@@ -80,4 +81,84 @@ public class Calendar implements ICalendar {
 		return date;
 	}
 
+	@Override
+	public Date convertStringToDate(String str) throws IllegalArgumentException, NumberFormatException {
+		// split the string at every non-digit (max four times)
+		String strParts[] = str.split("\\D",4);
+		
+		// if there are not 3 parts, it's no date
+		if(strParts.length != 3) {
+			throw new IllegalArgumentException( "The string has not the right format" ); 
+		}
+		
+		// convert to int
+		int first = Integer.parseInt(strParts[0]);
+		int month = Integer.parseInt(strParts[1]);
+		int third = Integer.parseInt(strParts[2]);
+		
+		// interpret it
+		if(month > 0 && month < 13) {
+			if(first > 1969 && first < 2101) {
+				// english date style (YYYY.MM.DD)
+				if(third > 0 && third < 32) {
+					return new Date(first, month, third, 0, 0);
+				}
+				
+			} else if(first > 0 && first < 32) {
+				// german date style (DD.MM.YYYY)
+				if(third > 1969 && third < 2101) {
+					return new Date(third, month, first, 0, 0);
+				}
+			} 
+		} 
+		
+		// if you are here, an error occured		
+		throw new IllegalArgumentException( "There are wrong values in the string" );
+	}
+
+	@Override
+	public String convertDateToStringInUSStyle(Date date) {
+		// year
+		String str = "" + date.getYear();
+		
+		// month
+		if(date.getMonth() <= 9) {
+			str += ".0" + date.getMonth();
+		} else {
+			str += "." + date.getMonth();
+		}
+		
+		// day
+		if(date.getDay() <= 9) {
+			str += ".0" + date.getDay();
+		} else {
+			str += "." + date.getDay();
+		}
+		
+		return str;
+	}
+
+	@Override
+	public String convertDateToStringInGermanStyle(Date date) {
+		String str = "";
+		
+		// day
+		if(date.getDay() <= 9) {
+			str += "0" + date.getDay();
+		} else {
+			str += date.getDay();
+		}
+		
+		// month
+		if(date.getMonth() <= 9) {
+			str += ".0" + date.getMonth();
+		} else {
+			str += "." + date.getMonth();
+		}
+		
+		// year
+		str += "." + date.getYear();
+		
+		return str;
+	}
 }

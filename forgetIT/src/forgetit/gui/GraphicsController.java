@@ -8,23 +8,25 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 
 import forgetit.common.Category;
+import forgetit.common.Date;
 import forgetit.common.Entity;
 import forgetit.common.Tag;
 import forgetit.gui.views.IEntitiesView;
+import forgetit.logic.Calendar;
 import forgetit.logic.ILogicNote;
 import forgetit.logic.ILogicNoteProvider;
 import forgetit.logic.ILogicTags;
+import forgetit.logic.interfaces.ICalendar;
 
 public class GraphicsController {
 	
 	private GraphicsModel model = null;
 	private LinkedList<Button> tagBtns = new LinkedList<Button>();
-	private LinkedList<Text> dateFields = new LinkedList<Text>();
 	private LinkedList<IEntitiesView> entitiesViews = new LinkedList<IEntitiesView>();
 
-	public GraphicsController(ILogicTags lt, ILogicNote ln, ILogicNoteProvider provider) {		
+	public GraphicsController(ILogicTags lt, ILogicNote ln, ILogicNoteProvider provider, ICalendar cal) {		
 		// create graphic model
-		this.model = new GraphicsModel(lt, ln, provider); 
+		this.model = new GraphicsModel(lt, ln, provider, cal); 
 		
 		// create graphic view
 		Display display = new Display();
@@ -44,15 +46,27 @@ public class GraphicsController {
 		}
 	}
 	
-	public void addDateField(Text field) {
-		if(!dateFields.contains(field)) {
-			dateFields.add(field);
+	public void setStartDate(Text field) {
+		Calendar cal = new Calendar();
+		try {
+			Date startDate = cal.convertStringToDate(field.getText());
+			model.setStartDate(startDate);
+			refreshViews();
+		} catch (Exception e) {
+			String startDate = cal.convertDateToStringInGermanStyle(model.getStartDate());
+			field.setText(startDate);
 		}
 	}
 	
-	public void removeDateField(Text field) {
-		if(dateFields.contains(field)) {
-			dateFields.remove(field);
+	public void setEndDate(Text field) {
+		Calendar cal = new Calendar();
+		try {
+			Date endDate = cal.convertStringToDate(field.getText());
+			model.setEndDate(endDate); 
+			refreshViews();
+		} catch (Exception e) {
+			String endDate = cal.convertDateToStringInGermanStyle(model.getEndDate());
+			field.setText(endDate);
 		}
 	}
 	
@@ -68,7 +82,7 @@ public class GraphicsController {
 		}
 	}
 	
-	public void searchTextChanged() {
+	public void searchTextChanged(Text field) {
 		//TODO implement this listener	
 		refreshViews();
 	}
@@ -90,13 +104,12 @@ public class GraphicsController {
 		refreshViews();
 	}
 	
-	public void dateFieldsChanged() {
-		//TODO implement this listener
-		refreshViews();
-	}
-	
 	public String getToday() {
-		return model.toString().replace("-", ".").substring(0, 9);
+		// Get the current date
+		Date today = model.getToday();
+		
+		// convert it in a string		
+		return new Calendar().convertDateToStringInGermanStyle(today);
 	}
 	
 	public List<String> getTags() {
@@ -108,7 +121,7 @@ public class GraphicsController {
 		return strTags;
 	}
 	
-	private void refreshViews() {
+	public void refreshViews() {
 		List<Entity> entities = model.getEntities();
 		
 		// iterate over all views

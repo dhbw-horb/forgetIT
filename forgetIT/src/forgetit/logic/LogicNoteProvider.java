@@ -33,7 +33,7 @@ public class LogicNoteProvider implements ILogicNoteProvider {
 
 	@Override
 	public List<Entity> getNotes(Date startDate, Date endDate) {
-		return getNotes(startDate, endDate);
+		return internalNoteProvider.getNotes(startDate, endDate);
 	}
 
 	@Override

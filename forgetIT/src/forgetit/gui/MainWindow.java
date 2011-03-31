@@ -94,7 +94,7 @@ public class MainWindow {
 		Composite comDate = new Composite(shell, SWT.NONE);
 		comDate.setLayoutData(gridData);
 		comDate.setLayout(new FillLayout());
-		new ViewDate(comDate);
+		new ViewDate(comDate, controller);
 		
 		// tags
 		gridData = new GridData(GridData.FILL,GridData.BEGINNING,true,false);
