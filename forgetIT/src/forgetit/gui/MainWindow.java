@@ -13,11 +13,22 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import forgetit.gui.views.ViewCalendar;
+import forgetit.gui.views.ViewDate;
+import forgetit.gui.views.ViewNotes;
+import forgetit.gui.views.ViewTags;
+import forgetit.gui.views.ViewTodo;
+
 public class MainWindow {
 	
 	private Shell shell = null;
+	private GraphicsController controller = null;
 	
-	public MainWindow(Display display) {
+	public MainWindow(Display display, GraphicsController graphicsController) {
+		// set controller
+		this.controller = graphicsController;
+		
+		// main window
 		shell = new Shell(display);
 		shell.setText("forgetIT");
 		
@@ -92,7 +103,7 @@ public class MainWindow {
 		Composite comTags = new Composite(shell, SWT.NONE);
 		comTags.setLayoutData(gridData);
 		comTags.setLayout(new FillLayout());
-		new ViewTags(comTags);
+		new ViewTags(comTags, controller);
 	}
 
 	private void initContentView() {

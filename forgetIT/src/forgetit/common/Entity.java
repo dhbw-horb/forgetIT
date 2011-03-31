@@ -16,6 +16,7 @@ public class Entity {
 	private int id;
 	private String title;
 	private String description;
+	private Category category;
 	private Status status;
 	private Function priority;
 	private GregorianCalendar startDate;
@@ -38,6 +39,12 @@ public class Entity {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	public Category getCategory() {
+		return category;
 	}
 	public Status getStatus() {
 		return status;
@@ -78,7 +85,4 @@ public class Entity {
 	public int getId() {
 		return id;
 	}
-	
-	
-	
 }

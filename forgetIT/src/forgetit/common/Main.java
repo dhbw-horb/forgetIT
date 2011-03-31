@@ -1,8 +1,12 @@
 package forgetit.common;
 
-import org.eclipse.swt.widgets.Display;
-
-import forgetit.gui.MainWindow;
+import forgetit.gui.GraphicsController;
+import forgetit.logic.ILogicNote;
+import forgetit.logic.ILogicNoteProvider;
+import forgetit.logic.ILogicTags;
+import forgetit.logic.LogicNote;
+import forgetit.logic.LogicNoteProvider;
+import forgetit.logic.LogicTags;
 
 public class Main {
 
@@ -10,8 +14,9 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Display display = new Display();
-		new MainWindow(display);
-		display.dispose();
+		ILogicTags lt = new LogicTags();
+		ILogicNote ln = new LogicNote();
+		ILogicNoteProvider lnProvider = new LogicNoteProvider();
+		new GraphicsController(lt, ln, lnProvider);
 	}
 }

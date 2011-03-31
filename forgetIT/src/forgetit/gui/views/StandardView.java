@@ -1,4 +1,4 @@
-package forgetit.gui;
+package forgetit.gui.views;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
