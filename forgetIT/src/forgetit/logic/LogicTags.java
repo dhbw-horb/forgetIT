@@ -3,8 +3,8 @@ package forgetit.logic;
 import java.util.List;
 
 import forgetit.common.Tag;
+import forgetit.logic.entity.LogicTagsInternal;
 import forgetit.logic.interfaces.ILogicInternalTags;
-import forgetit.logic.note.LogicTagsInternal;
 
 /**
  * 

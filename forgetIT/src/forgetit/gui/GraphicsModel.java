@@ -6,16 +6,16 @@ import java.util.List;
 import forgetit.common.Date;
 import forgetit.common.Entity;
 import forgetit.common.Tag;
-import forgetit.logic.ILogicNote;
-import forgetit.logic.ILogicNoteProvider;
+import forgetit.logic.ILogicEntity;
+import forgetit.logic.ILogicEntityProvider;
 import forgetit.logic.ILogicTags;
 import forgetit.logic.interfaces.ICalendar;
 
 public class GraphicsModel {
 	
 	private ILogicTags logicTags = null;
-	private ILogicNote logicNotes = null;
-	private ILogicNoteProvider provider = null;
+	private ILogicEntity logicNotes = null;
+	private ILogicEntityProvider provider = null;
 	private ICalendar cal = null;
 		
 	private Date startDate = null;
@@ -23,7 +23,7 @@ public class GraphicsModel {
 	private List<Tag> tags = new LinkedList<Tag>();
 	
 	
-	public GraphicsModel(ILogicTags lt, ILogicNote ln, ILogicNoteProvider provider, ICalendar cal) {
+	public GraphicsModel(ILogicTags lt, ILogicEntity ln, ILogicEntityProvider provider, ICalendar cal) {
 		this.provider = provider;
 		this.logicTags = lt;
 		this.logicNotes = ln;
@@ -79,31 +79,31 @@ public class GraphicsModel {
 		if(startDate == null || endDate == null) {
 			if(tags.isEmpty()) {
 				// all entities
-				return provider.getNotes();
+				return provider.getEntities();
 			} else {
 				// all entities with the given tags
-				return provider.getNotes(tags);
+				return provider.getEntities(tags);
 			}
 		} else {
 			if(tags.isEmpty()) {
 				// all entities between startDate and endDate
-				return provider.getNotes(startDate, endDate);
+				return provider.getEntities(startDate, endDate);
 			} else {
 				// all entities with the given tags and between startDate and endDate
-				return provider.getNotes(startDate, endDate, tags);
+				return provider.getEntities(startDate, endDate, tags);
 			}
 		}
 	}
 	
 	public void addEntity(Entity entity) {
-		logicNotes.addNote(entity);
+		logicNotes.addEntity(entity);
 	}
 	
 	public void deleteEntity(Entity entity) {
-		logicNotes.deleteNode(entity);
+		logicNotes.deleteEntity(entity);
 	}
 	
 	public void changeEntity(Entity entity) {
-		logicNotes.changeNote(entity);
+		logicNotes.changeEntity(entity);
 	}
 }

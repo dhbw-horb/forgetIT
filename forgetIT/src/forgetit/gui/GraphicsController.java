@@ -13,8 +13,8 @@ import forgetit.common.Entity;
 import forgetit.common.Tag;
 import forgetit.gui.views.IEntitiesView;
 import forgetit.logic.Calendar;
-import forgetit.logic.ILogicNote;
-import forgetit.logic.ILogicNoteProvider;
+import forgetit.logic.ILogicEntity;
+import forgetit.logic.ILogicEntityProvider;
 import forgetit.logic.ILogicTags;
 import forgetit.logic.interfaces.ICalendar;
 
@@ -24,7 +24,7 @@ public class GraphicsController {
 	private LinkedList<Button> tagBtns = new LinkedList<Button>();
 	private LinkedList<IEntitiesView> entitiesViews = new LinkedList<IEntitiesView>();
 
-	public GraphicsController(ILogicTags lt, ILogicNote ln, ILogicNoteProvider provider, ICalendar cal) {		
+	public GraphicsController(ILogicTags lt, ILogicEntity ln, ILogicEntityProvider provider, ICalendar cal) {		
 		// create graphic model
 		this.model = new GraphicsModel(lt, ln, provider, cal); 
 		
