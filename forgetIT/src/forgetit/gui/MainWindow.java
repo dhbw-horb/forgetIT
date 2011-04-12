@@ -13,6 +13,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+import forgetit.gui.views.IEntitiesView;
 import forgetit.gui.views.ViewCalendar;
 import forgetit.gui.views.ViewDate;
 import forgetit.gui.views.ViewNotes;
@@ -22,11 +23,13 @@ import forgetit.gui.views.ViewTodo;
 public class MainWindow {
 	
 	private Shell shell = null;
+	private Display display = null;
 	private GraphicsController controller = null;
 	
 	public MainWindow(Display display, GraphicsController graphicsController) {
-		// set controller
+		// set controller and display
 		this.controller = graphicsController;
+		this.display = display;
 		
 		// main window
 		shell = new Shell(display);
@@ -46,12 +49,6 @@ public class MainWindow {
         shell.pack();
         // open shell
 		shell.open();
-
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch()) {
-				display.sleep();
-			}
-		}
 	}
 	
 	private void initFirstRow() {
@@ -114,7 +111,7 @@ public class MainWindow {
 		Composite comCal = new Composite(shell, SWT.NONE);
 		comCal.setLayoutData(gridData);
 		comCal.setLayout(new FillLayout());
-		new ViewCalendar(comCal);
+		controller.addEntitiesView(new ViewCalendar(comCal));
 		
 		// todos
 		gridData = new GridData(GridData.FILL,GridData.FILL,true,true);
@@ -122,8 +119,8 @@ public class MainWindow {
 		gridData.verticalSpan = 4;
 		Composite comTodo = new Composite(shell, SWT.NONE);
 		comTodo.setLayoutData(gridData);
-		comTodo.setLayout(new FillLayout());
-		new ViewTodo(comTodo);
+		comTodo.setLayout(new FillLayout());		
+		controller.addEntitiesView(new ViewTodo(comTodo));
 		
 		// notes
 		gridData = new GridData(GridData.FILL,GridData.FILL,true,true);
@@ -132,6 +129,14 @@ public class MainWindow {
 		Composite comNotes = new Composite(shell, SWT.NONE);
 		comNotes.setLayoutData(gridData);
 		comNotes.setLayout(new FillLayout());
-		new ViewNotes(comNotes);
+		controller.addEntitiesView(new ViewNotes(comNotes));
 	}	
+	
+	public void waitForDispose() {
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+	}
 }

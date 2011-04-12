@@ -70,8 +70,9 @@ public class GraphicsModel {
 		// Dummy
 		List<Tag> tags = new LinkedList<Tag>();
 		for(int i = 0; i < 10; i++) {
-			tags.add(new Tag(0,"Test "+i, "Description of Test "+i));
+			tags.add(new Tag(i,"Test "+i, "Description of Test "+i));
 		}
+		tags.add(new Tag(11,"DHBW","DHBW Stuttgart Campus Horb"));
 		return tags;
 	}
 

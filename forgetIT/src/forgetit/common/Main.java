@@ -21,6 +21,6 @@ public class Main {
 		ILogicEntity ln = new LogicEntity();
 		ILogicEntityProvider lnProvider = new LogicEntityProvider();
 		GraphicsController gui = new GraphicsController(lt, ln, lnProvider, cal);
-		gui.refreshViews();
+		gui.waitForDispose();
 	}
 }

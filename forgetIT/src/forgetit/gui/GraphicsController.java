@@ -10,6 +10,7 @@ import org.eclipse.swt.widgets.Text;
 import forgetit.common.Category;
 import forgetit.common.Date;
 import forgetit.common.Entity;
+import forgetit.common.Function;
 import forgetit.common.Tag;
 import forgetit.gui.views.IEntitiesView;
 import forgetit.logic.Calendar;
@@ -20,6 +21,8 @@ import forgetit.logic.interfaces.ICalendar;
 
 public class GraphicsController {
 	
+	private Display display = null;
+	private MainWindow mainWindow = null;
 	private GraphicsModel model = null;
 	private LinkedList<Button> tagBtns = new LinkedList<Button>();
 	private LinkedList<IEntitiesView> entitiesViews = new LinkedList<IEntitiesView>();
@@ -27,11 +30,11 @@ public class GraphicsController {
 	public GraphicsController(ILogicTags lt, ILogicEntity ln, ILogicEntityProvider provider, ICalendar cal) {		
 		// create graphic model
 		this.model = new GraphicsModel(lt, ln, provider, cal); 
-		
+
 		// create graphic view
-		Display display = new Display();
-		new MainWindow(display, this);
-		display.dispose();
+		display = new Display();
+		mainWindow = new MainWindow(display, this);
+		
 	}
 	
 	public void addTagButton(Button btn) {
@@ -70,13 +73,13 @@ public class GraphicsController {
 		}
 	}
 	
-	public void addActivitiesView(IEntitiesView view) {
+	public void addEntitiesView(IEntitiesView view) {
 		if(!entitiesViews.contains(view)) {
 			entitiesViews.add(view);
 		}
 	}
 	
-	public void removeActivitiesView(IEntitiesView view) {
+	public void removeEntitiesView(IEntitiesView view) {
 		if(entitiesViews.contains(view)) {
 			entitiesViews.remove(view);
 		}
@@ -122,7 +125,45 @@ public class GraphicsController {
 	}
 	
 	public void refreshViews() {
-		List<Entity> entities = model.getEntities();
+		// TODO replace dummy with this
+		/*List<Entity> entities = model.getEntities();
+		if(entities == null) {
+			return;
+		}*/
+		// dummy
+		List<Entity> entities = new LinkedList<Entity>();
+		Function func = new Function();
+		List<Integer> coef = new LinkedList<Integer>();
+		coef.add(1);
+		func.setCoefficients(coef);
+		List<Tag> tags = new LinkedList<Tag>();
+		tags.add(new Tag(0, "DHBW", "DHBW Horb"));
+		for(int i = 0; i < 3; i++) {
+			Entity entity = new Entity(i);
+			entity.setTitle("TestTodo "+i);
+			entity.setCategory(Category.TODO);
+			entity.setPriority(func);
+			entity.setTags(tags);
+			entities.add(entity);
+		}
+		for(int i = 0; i < 3; i++) {
+			Entity entity = new Entity(i);
+			entity.setTitle("TestCal "+i);
+			entity.setCategory(Category.APPOINTMENT);
+			entity.setStartDate(new Date(2011, 04, 12, 12, 34));
+			entity.setEndDate(new Date(2011, 04, 13, 12, 34));
+			entity.setTags(tags);
+			entities.add(entity);
+		}
+		for(int i = 0; i < 3; i++) {
+			Entity entity = new Entity(i);
+			entity.setTitle("TestNotes "+i);
+			entity.setCategory(Category.NOTE);
+			entity.setDescription("I am a test");
+			entity.setTags(tags);
+			entities.add(entity);
+		}
+		// End of dummy
 		
 		// iterate over all views
 		for(IEntitiesView view : entitiesViews) {
@@ -137,5 +178,10 @@ public class GraphicsController {
 			// refresh the view
 			view.refreshView(entitiesForView);
 		}
+	}
+	
+	public void waitForDispose() {
+		mainWindow.waitForDispose();
+		display.dispose();
 	}
 }

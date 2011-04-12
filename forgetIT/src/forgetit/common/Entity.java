@@ -1,6 +1,5 @@
 package forgetit.common;
 
-import java.util.GregorianCalendar;
 import java.util.List;
 
 
@@ -19,8 +18,8 @@ public class Entity {
 	private Category category;
 	private Status status;
 	private Function priority;
-	private GregorianCalendar startDate;
-	private GregorianCalendar endDate;	
+	private Date startDate;
+	private Date endDate;	
 	private List<Tag> tags;	
 	private List<Entity> dependencies; //All notes, that have to happen before
 	
@@ -58,16 +57,16 @@ public class Entity {
 	public void setPriority(Function priority) {
 		this.priority = priority;
 	}
-	public GregorianCalendar getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(GregorianCalendar startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public GregorianCalendar getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(GregorianCalendar endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 	public List<Tag> getTags() {
