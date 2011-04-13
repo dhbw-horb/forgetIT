@@ -1,8 +1,9 @@
 package forgetit.logic.entity;
 
 import forgetit.common.Entity;
-import forgetit.db.DBNote;
-import forgetit.db.IDBNote;
+import forgetit.db.DBEntityHandler;
+import forgetit.db.IDBEntity;
+import forgetit.logic.LogicEntity;
 import forgetit.logic.interfaces.ILogicInternalEntity;
 
 /**
@@ -14,29 +15,29 @@ import forgetit.logic.interfaces.ILogicInternalEntity;
  */
 public class LogicEntityInternal implements ILogicInternalEntity{
 	
-	private IDBNote dbNote;
+	private DBEntityHandler dbEntity;
 	
 	public LogicEntityInternal(){
-		dbNote = new DBNote();
+		dbEntity = new DBEntityHandler();
 	}
 
 	@Override
 	public void addEntity(Entity entity) {
 		//TODO add check input
-		dbNote.addNote(entity);
+		dbEntity.addEntity(entity);
 	}
 
 	@Override
 	public void deleteEntity(Entity entity) {
 		//TODO check input
-		dbNote.deleteNode(entity);
+		dbEntity.deleteEntity(entity);
 		
 	}
 
 	@Override
 	public void changeEntity(Entity entity) {
 		//TODO check input
-		dbNote.changeNote(entity);
+		dbEntity.editEntity(entity);
 		
 	}
 

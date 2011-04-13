@@ -5,8 +5,8 @@ import java.util.List;
 import forgetit.common.Date;
 import forgetit.common.Entity;
 import forgetit.common.Tag;
-import forgetit.db.DBNoteProvider;
-import forgetit.db.IDBNoteProvider;
+import forgetit.db.DBEntityProvider;
+import forgetit.db.IDBEntityProvider;
 import forgetit.logic.interfaces.ILogicInternalEntityProvider;
 
 /**
@@ -18,33 +18,33 @@ import forgetit.logic.interfaces.ILogicInternalEntityProvider;
  */
 public class LogicEntityProviderInternal implements ILogicInternalEntityProvider {
 	
-	private IDBNoteProvider dbNoteProvider;
+	private IDBEntityProvider dbNoteProvider;
 	
 	public LogicEntityProviderInternal(){
-		dbNoteProvider = new DBNoteProvider();
+		dbNoteProvider = new DBEntityProvider();
 	}
 
 	@Override
 	public List<Entity> getEntities() {
-		return dbNoteProvider.getNotes();
+		return dbNoteProvider.getEntities();
 	}
 
 	@Override
 	public List<Entity> getEntities(Date startDate, Date endDate) {
 		//TODO check input
-		return dbNoteProvider.getNotes(startDate, endDate);
+		return dbNoteProvider.getEntities(startDate, endDate);
 	}
 
 	@Override
 	public List<Entity> getEntities(Date startDate, Date endDate, List<Tag> tags) {
 		// TODO check input
-		return dbNoteProvider.getNotes(startDate, endDate, tags);
+		return dbNoteProvider.getEntities(startDate, endDate, tags);
 	}
 
 	@Override
 	public List<Entity> getEntities(List<Tag> tags) {
 		// TODO check input
-		return dbNoteProvider.getNotes(tags);
+		return dbNoteProvider.getEntities(tags);
 	}
 
 }

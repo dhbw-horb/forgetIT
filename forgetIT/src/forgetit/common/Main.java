@@ -1,5 +1,9 @@
 package forgetit.common;
 
+import java.util.List;
+
+import forgetit.db.DBEntityHandler;
+import forgetit.db.DBEntityProvider;
 import forgetit.gui.GraphicsController;
 import forgetit.logic.Calendar;
 import forgetit.logic.ILogicEntity;
@@ -16,6 +20,15 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		
+		/*
+		// Uncomment this to test the database
+		DBEntityHandler handler = new DBEntityHandler();
+		DBEntityProvider provider = new DBEntityProvider();
+		List<Entity> entities = provider.getEntities();*/
+		
+		
 		ICalendar cal = new Calendar();
 		ILogicTags lt = new LogicTags();
 		ILogicEntity ln = new LogicEntity();

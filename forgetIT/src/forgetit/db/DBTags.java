@@ -6,8 +6,6 @@ import forgetit.common.Tag;
 /**
  * 
  * @author David Henn
- * @date 2.3.2011
- * Implementation of IDBTags
  * @see IDBTags
  *
  */

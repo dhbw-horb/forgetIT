@@ -1,0 +1,37 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+  "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+  <session-factory>
+
+	  
+     <!-- Database connection settings -->
+                <property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
+        <property name="connection.url">jdbc:hsqldb:file:lib/hsqldb/forgetIT</property>
+        <property name="connection.username">SA</property>
+        <property name="connection.password"></property>
+
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">10</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
+	  
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
+       <!-- Validates DB schema while createing the SessionFactory --> 
+	  <property name="hibernate.hbm2ddl.auto">validate</property>
+	  
+        <!-- <mapping resource="Keyword.hbm.xml"/>  -->
+        <property name="hibernate.current_session_context_class">org.hibernate.context.ThreadLocalSessionContext</property>
+        <!-- <mapping resource="de/laliluna/example/Honey.hbm.xml" /> -->
+	   <property name="hibernate.transaction.flush_before_completion">true</property>
+	   <mapping class="de.laliluna.example.Honey" />
+        <mapping class="forgetit.common.Entity" />
+        <mapping class="forgetit.common.Function" />
+        <mapping class="forgetit.common.Tag" />
+         
+  </session-factory>
+</hibernate-configuration>
