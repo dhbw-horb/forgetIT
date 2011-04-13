@@ -16,7 +16,7 @@ public class Date {
 	
 	public Date(int year, int month, int day, int hour, int minute){
 		this.year = year; 
-		this.month = month;
+		this.month = month+1; // TODO check if this addition is ok
 		this.day = day;
 		this.hour = hour;
 		this.minute = minute;

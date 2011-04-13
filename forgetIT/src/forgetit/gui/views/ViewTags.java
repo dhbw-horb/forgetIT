@@ -35,21 +35,23 @@ public class ViewTags extends StandardView {
 
 		// init buttons
 		List<String> strTags = controller.getTags();
-		for(String str : strTags) {
-			// create button with name
-			Button btn = new Button(content,SWT.TOGGLE);
-			btn.setText(str);
-			
-			// add listener
-			btn.addSelectionListener(new SelectionAdapter() {
-	            @Override
-	            public void widgetSelected(SelectionEvent e) {
-	                controller.tagBtnsChanged();
-	            }
-	        });
-			
-			// tell the observer, that there is a new button
-			controller.addTagButton(btn);
+		if(strTags != null) {
+			for(String str : strTags) {
+				// create button with name
+				Button btn = new Button(content,SWT.TOGGLE);
+				btn.setText(str);
+				
+				// add listener
+				btn.addSelectionListener(new SelectionAdapter() {
+		            @Override
+		            public void widgetSelected(SelectionEvent e) {
+		                controller.tagBtnsChanged();
+		            }
+		        });
+				
+				// tell the observer, that there is a new button
+				controller.addTagButton(btn);
+			}
 		}
 	}
 }

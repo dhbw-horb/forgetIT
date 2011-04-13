@@ -57,20 +57,20 @@ public class DBEntityProvider implements IDBEntityProvider {
 
 	public List<Entity> getEntities(Date startDate, Date endDate) {
 
-		// TODO Auto-generated method stub
-		return null;
+		// TODO delete the forwarding and implement the correct logic
+		return getEntities();
 	}
 
 	public List<Entity> getEntities(Date startDate, Date endDate, List<Tag> tags) {
 
-		// TODO Auto-generated method stub
-		return null;
+		// TODO delete the forwarding and implement the correct logic
+		return getEntities();
 	}
 
 	public List<Entity> getEntities(List<Tag> tags) {
 
-		// TODO Auto-generated method stub
-		return null;
+		// TODO delete the forwarding and implement the correct logic
+		return getEntities();
 	}
 
 	

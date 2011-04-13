@@ -107,6 +107,10 @@ public class GraphicsController {
 		refreshViews();
 	}
 	
+	public void addEntity(Entity entity) {
+		model.addEntity(entity);		
+	}
+	
 	public String getToday() {
 		// Get the current date
 		Date today = model.getToday();
@@ -118,6 +122,9 @@ public class GraphicsController {
 	public List<String> getTags() {
 		List<String> strTags = new LinkedList<String>();
 		List<Tag> tags = model.getTags();
+		if(tags == null) {
+			return null;
+		}
 		for(Tag tag : tags) {
 			strTags.add(tag.getName());
 		}
@@ -125,12 +132,13 @@ public class GraphicsController {
 	}
 	
 	public void refreshViews() {
-		// TODO replace dummy with this
-		/*List<Entity> entities = model.getEntities();
+		List<Entity> entities = model.getEntities();
 		if(entities == null) {
 			return;
-		}*/
-		// dummy
+		}
+		
+		// TODO delete dummy
+		/*// dummy
 		List<Entity> entities = new LinkedList<Entity>();
 		Function func = new Function();
 		List<Integer> coef = new LinkedList<Integer>();
@@ -139,7 +147,7 @@ public class GraphicsController {
 		List<Tag> tags = new LinkedList<Tag>();
 		tags.add(new Tag(0, "DHBW", "DHBW Horb"));
 		for(int i = 0; i < 3; i++) {
-			Entity entity = new Entity(i);
+			Entity entity = new Entity();
 			entity.setTitle("TestTodo "+i);
 			entity.setCategory(Category.TODO);
 			entity.setPriority(func);
@@ -147,7 +155,7 @@ public class GraphicsController {
 			entities.add(entity);
 		}
 		for(int i = 0; i < 3; i++) {
-			Entity entity = new Entity(i);
+			Entity entity = new Entity();
 			entity.setTitle("TestCal "+i);
 			entity.setCategory(Category.APPOINTMENT);
 			entity.setStartDate(new Date(2011, 04, 12, 12, 34));
@@ -156,7 +164,7 @@ public class GraphicsController {
 			entities.add(entity);
 		}
 		for(int i = 0; i < 3; i++) {
-			Entity entity = new Entity(i);
+			Entity entity = new Entity();
 			entity.setTitle("TestNotes "+i);
 			entity.setCategory(Category.NOTE);
 			entity.setDescription("I am a test");
@@ -177,7 +185,7 @@ public class GraphicsController {
 			}
 			// refresh the view
 			view.refreshView(entitiesForView);
-		}
+		}*/
 	}
 	
 	public void waitForDispose() {

@@ -3,6 +3,7 @@ package forgetit.logic.entity;
 import java.util.List;
 
 import forgetit.common.Tag;
+import forgetit.db.DBTags;
 import forgetit.db.IDBTags;
 import forgetit.logic.interfaces.ILogicInternalTags;
 /**
@@ -16,6 +17,10 @@ import forgetit.logic.interfaces.ILogicInternalTags;
 public class LogicTagsInternal implements ILogicInternalTags {
 	
 	private IDBTags dbTags;
+	
+	public LogicTagsInternal() {
+		dbTags = new DBTags();
+	}
 
 	@Override
 	public List<Tag> getTags() {

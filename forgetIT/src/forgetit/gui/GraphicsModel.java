@@ -3,6 +3,9 @@ package forgetit.gui;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.TableColumn;
+
 import forgetit.common.Date;
 import forgetit.common.Entity;
 import forgetit.common.Tag;
@@ -64,16 +67,16 @@ public class GraphicsModel {
 	}
 	
 	public List<Tag> getTags() {
-		//TODO delete dummy		
-		//return logicTags.getTags();
+		return logicTags.getTags();
 		
-		// Dummy
+		// TODO delete dummy
+		/*// Dummy
 		List<Tag> tags = new LinkedList<Tag>();
-		for(int i = 0; i < 10; i++) {
-			tags.add(new Tag(i,"Test "+i, "Description of Test "+i));
+		String[] tagTitles = {"Work", "Study", "Personal"};
+		for (int i=0; i < tagTitles.length; i++) {
+			tags.add(new Tag( i, tagTitles[i], "Description of "+tagTitles[i]));
 		}
-		tags.add(new Tag(11,"DHBW","DHBW Stuttgart Campus Horb"));
-		return tags;
+		return tags;*/
 	}
 
 	public List<Entity> getEntities() {
