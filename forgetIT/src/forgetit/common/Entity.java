@@ -1,5 +1,6 @@
 package forgetit.common;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.GeneratedValue;
@@ -39,6 +40,16 @@ public class Entity {
 	@OneToMany
 	private List<Entity> dependencies; // All notes, that have to happen before
 	private Category category;
+	
+	public Entity() {
+		this.title = "";
+		this.description = "";
+		this.status = Status.IDLE;
+		this.priority = new Function();
+		this.startDate = new Date();
+		this.endDate = new Date();
+		this.tags = new LinkedList<Tag>();
+	}
 
 	public String getTitle() {
 
@@ -71,12 +82,13 @@ public class Entity {
 	}
 
 	public Function getPriority() {
-
+		if(priority == null) {
+			return new Function();
+		}
 		return priority;
 	}
 
 	public void setPriority(Function priority) {
-
 		this.priority = priority;
 	}
 

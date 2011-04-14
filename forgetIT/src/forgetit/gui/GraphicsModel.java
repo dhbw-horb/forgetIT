@@ -46,7 +46,7 @@ public class GraphicsModel {
 		
 	private Date startDate = null;
 	private Date endDate = null;
-	private List<Tag> tags = new LinkedList<Tag>();
+	private List<Tag> tags = null;
 	
 	
 	public GraphicsModel(ILogicTags lt, ILogicEntity ln, ILogicEntityProvider provider, ICalendar cal) {
@@ -90,16 +90,11 @@ public class GraphicsModel {
 	}
 	
 	public List<Tag> getTags() {
-		return logicTags.getTags();
-		
-		// TODO delete dummy
-		/*// Dummy
-		List<Tag> tags = new LinkedList<Tag>();
-		String[] tagTitles = {"Work", "Study", "Personal"};
-		for (int i=0; i < tagTitles.length; i++) {
-			tags.add(new Tag( i, tagTitles[i], "Description of "+tagTitles[i]));
+		List<Tag> tagsFromDB = logicTags.getTags();
+		if(tagsFromDB == null) {
+			tagsFromDB = new LinkedList<Tag>();
 		}
-		return tags;*/
+		return tagsFromDB;
 	}
 
 	public List<Entity> getEntities() {
