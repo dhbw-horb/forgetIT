@@ -28,6 +28,7 @@ import org.eclipse.swt.widgets.TableItem;
 
 import forgetit.common.Category;
 import forgetit.common.Entity;
+import forgetit.common.Function;
 
 /**
  * The view for todos

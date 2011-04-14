@@ -26,7 +26,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
 /**
- * The outer design (borders, titles, ...) of the different views which extends this class
+ * This class is responsible for the outer design (borders, titles, ...) of the 
+ * different views which extends this class
  * 
  * @author ChornHulio (<a href="mailto:[chornhulio@web.de]">chornhulio@web.de</a>)
  * @since 0.1
