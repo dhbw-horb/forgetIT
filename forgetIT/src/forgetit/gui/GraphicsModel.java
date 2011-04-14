@@ -1,3 +1,20 @@
+/*
+ * Copyright 2011 DHBW Stuttgart Campus Horb
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
+ * express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package forgetit.gui;
 
 import java.util.LinkedList;
@@ -11,6 +28,15 @@ import forgetit.logic.ILogicEntityProvider;
 import forgetit.logic.ILogicTags;
 import forgetit.logic.interfaces.ICalendar;
 
+/**
+ * The "data model" of the gui
+ * 
+ * GraphicsModel is the interface to the logic layer. It takes and holds the data.
+ * The gui-package works like the MVC-Pattern descripes.
+ * 
+ * @author ChornHulio (<a href="mailto:[chornhulio@web.de]">chornhulio@web.de</a>)
+ * @since 0.1
+ */
 public class GraphicsModel {
 	
 	private ILogicTags logicTags = null;
