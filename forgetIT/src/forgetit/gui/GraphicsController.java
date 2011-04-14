@@ -1,3 +1,20 @@
+/*
+ * Copyright 2011 DHBW Stuttgart Campus Horb
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
+ * express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package forgetit.gui;
 
 import java.util.LinkedList;
@@ -10,7 +27,6 @@ import org.eclipse.swt.widgets.Text;
 import forgetit.common.Category;
 import forgetit.common.Date;
 import forgetit.common.Entity;
-import forgetit.common.Function;
 import forgetit.common.Tag;
 import forgetit.gui.views.IEntitiesView;
 import forgetit.logic.Calendar;
@@ -19,6 +35,15 @@ import forgetit.logic.ILogicEntityProvider;
 import forgetit.logic.ILogicTags;
 import forgetit.logic.interfaces.ICalendar;
 
+/**
+ * The "controller" of the gui
+ * 
+ * GraphicsController is the interface between GraphicsModel and the views.
+ * The gui-package works like the MVC-Pattern descripes.
+ * 
+ * @author ChornHulio (<a href="mailto:[chornhulio@web.de]">chornhulio@web.de</a>)
+ * @since 0.1
+ */
 public class GraphicsController {
 	
 	private Display display = null;
@@ -136,43 +161,7 @@ public class GraphicsController {
 		if(entities == null) {
 			return;
 		}
-		
-		// TODO delete dummy
-		/*// dummy
-		List<Entity> entities = new LinkedList<Entity>();
-		Function func = new Function();
-		List<Integer> coef = new LinkedList<Integer>();
-		coef.add(1);
-		func.setCoefficients(coef);
-		List<Tag> tags = new LinkedList<Tag>();
-		tags.add(new Tag(0, "DHBW", "DHBW Horb"));
-		for(int i = 0; i < 3; i++) {
-			Entity entity = new Entity();
-			entity.setTitle("TestTodo "+i);
-			entity.setCategory(Category.TODO);
-			entity.setPriority(func);
-			entity.setTags(tags);
-			entities.add(entity);
-		}
-		for(int i = 0; i < 3; i++) {
-			Entity entity = new Entity();
-			entity.setTitle("TestCal "+i);
-			entity.setCategory(Category.APPOINTMENT);
-			entity.setStartDate(new Date(2011, 04, 12, 12, 34));
-			entity.setEndDate(new Date(2011, 04, 13, 12, 34));
-			entity.setTags(tags);
-			entities.add(entity);
-		}
-		for(int i = 0; i < 3; i++) {
-			Entity entity = new Entity();
-			entity.setTitle("TestNotes "+i);
-			entity.setCategory(Category.NOTE);
-			entity.setDescription("I am a test");
-			entity.setTags(tags);
-			entities.add(entity);
-		}
-		// End of dummy
-		
+
 		// iterate over all views
 		for(IEntitiesView view : entitiesViews) {
 			// only use the compatible entities for the view
@@ -185,7 +174,7 @@ public class GraphicsController {
 			}
 			// refresh the view
 			view.refreshView(entitiesForView);
-		}*/
+		}
 	}
 	
 	public void waitForDispose() {

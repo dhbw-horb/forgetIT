@@ -1,7 +1,21 @@
-package forgetit.gui;
+/*
+ * Copyright 2011 DHBW Stuttgart Campus Horb
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
+ * express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import java.util.LinkedList;
-import java.util.List;
+package forgetit.gui;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -16,16 +30,20 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import forgetit.common.Category;
 import forgetit.common.Entity;
-import forgetit.common.Function;
-import forgetit.common.Tag;
+import forgetit.gui.dialogs.AddEntityDialog;
 import forgetit.gui.views.ViewCalendar;
 import forgetit.gui.views.ViewDate;
 import forgetit.gui.views.ViewNotes;
 import forgetit.gui.views.ViewTags;
 import forgetit.gui.views.ViewTodo;
 
+/**
+ * main window which creates the different views
+ * 
+ * @author ChornHulio (<a href="mailto:[chornhulio@web.de]">chornhulio@web.de</a>)
+ * @since 0.1
+ */ 
 public class MainWindow {
 	
 	private Shell shell = null;
@@ -72,22 +90,13 @@ public class MainWindow {
 		add.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO show Dialog for adding entities and delete dummy
-            	
-            	// dummy
-            	Function func = new Function();
-        		List<Integer> coef = new LinkedList<Integer>();
-        		coef.add(1);
-        		func.setCoefficients(coef);        		
-    			Entity entity = new Entity();
-    			entity.setTitle("Test");
-    			entity.setCategory(Category.TODO);
-    			entity.setPriority(func);
-    			List<Tag> tags = new LinkedList<Tag>();
-    			tags.add(new Tag(0, "Study", "Description of Study"));
-    			entity.setTags(tags);
-            	controller.addEntity(entity);
-            	// end of dummy
+                // show dialog for adding entities
+            	AddEntityDialog dialog = new AddEntityDialog(shell);
+            	Entity entity = dialog.open();
+            	if(entity != null) {
+            		controller.addEntity(entity);
+            		controller.refreshViews();
+            	}
             }
         });		
 		
