@@ -1,7 +1,10 @@
 package forgetit.common;
 
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  * 
@@ -20,6 +23,10 @@ public class Date {
 	int day;
 	int hour;
 	int minute;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(nullable = false)
+	private forgetit.common.Entity entity_id;
 
 	public Date(int year, int month, int day, int hour, int minute) {
 

@@ -1,6 +1,0 @@
-/*C2*/SET SCHEMA PUBLIC
-<<<<<<< HEAD
-DISCONNECT
-=======
-ROLLBACK
->>>>>>> 45b1b2e69e9bda038c5e81ab72def40b18ae68ba

@@ -22,7 +22,7 @@
         <property name="show_sql">true</property>
 
        <!-- Validates DB schema while createing the SessionFactory --> 
-	  <property name="hibernate.hbm2ddl.auto">validate</property>
+	  <property name="hibernate.hbm2ddl.auto">update</property>
 	  
         <!-- <mapping resource="Keyword.hbm.xml"/>  -->
         <property name="hibernate.current_session_context_class">org.hibernate.context.ThreadLocalSessionContext</property>

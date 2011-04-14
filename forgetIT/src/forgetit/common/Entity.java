@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -29,9 +28,9 @@ public class Entity {
 
 	@OneToOne(mappedBy = "entity_id")
 	private Function priority;
-	@ManyToOne
+	@OneToOne(mappedBy = "entity_id")
 	private Date startDate;
-	@ManyToOne
+	@OneToOne(mappedBy = "entity_id")
 	private Date endDate;
 
 	@OneToMany(mappedBy = "entity_id")
@@ -40,8 +39,9 @@ public class Entity {
 	@OneToMany
 	private List<Entity> dependencies; // All notes, that have to happen before
 	private Category category;
-	
+
 	public Entity() {
+
 		this.title = "";
 		this.description = "";
 		this.status = Status.IDLE;
@@ -82,13 +82,15 @@ public class Entity {
 	}
 
 	public Function getPriority() {
-		if(priority == null) {
+
+		if (priority == null) {
 			return new Function();
 		}
 		return priority;
 	}
 
 	public void setPriority(Function priority) {
+
 		this.priority = priority;
 	}
 
