@@ -22,16 +22,15 @@
         <property name="show_sql">true</property>
 
        <!-- Validates DB schema while createing the SessionFactory --> 
-	  <property name="hibernate.hbm2ddl.auto">validate</property>
+	  <property name="hibernate.hbm2ddl.auto">update</property>
 	  
         <!-- <mapping resource="Keyword.hbm.xml"/>  -->
         <property name="hibernate.current_session_context_class">org.hibernate.context.ThreadLocalSessionContext</property>
-        <!-- <mapping resource="de/laliluna/example/Honey.hbm.xml" /> -->
 	   <property name="hibernate.transaction.flush_before_completion">true</property>
-	   <mapping class="de.laliluna.example.Honey" />
+	   <mapping class="forgetit.common.Date" />
+	   <mapping class="forgetit.common.Function" />
         <mapping class="forgetit.common.Entity" />
-        <mapping class="forgetit.common.Function" />
         <mapping class="forgetit.common.Tag" />
-         
+                 
   </session-factory>
 </hibernate-configuration>

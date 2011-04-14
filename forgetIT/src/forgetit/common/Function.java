@@ -6,8 +6,11 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Function {
@@ -15,6 +18,10 @@ public class Function {
 	@Id
 	@GeneratedValue
 	private int id;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(nullable = false)
+	private forgetit.common.Entity entity_id;
 
 	// x^0....x^n
 	@ElementCollection

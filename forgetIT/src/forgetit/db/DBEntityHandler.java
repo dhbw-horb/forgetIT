@@ -1,15 +1,10 @@
 package forgetit.db;
 
-import java.util.Iterator;
-import java.util.List;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import de.laliluna.example.Honey;
 
 import forgetit.common.Entity;
 
@@ -23,7 +18,7 @@ import forgetit.common.Entity;
 public class DBEntityHandler implements IDBEntity {
 
 	final static Logger logger = LoggerFactory.getLogger(DBEntityHandler.class);
-	
+
 	public void addEntity(Entity entity) {
 
 		Transaction tx = null;
@@ -43,10 +38,6 @@ public class DBEntityHandler implements IDBEntity {
 			}
 		}
 	}
-	
-
-	
-	
 
 	public void deleteEntity(Entity entity) {
 
@@ -64,11 +55,10 @@ public class DBEntityHandler implements IDBEntity {
 					logger.debug("Error rolling back transaction");
 				}
 				throw e;
-			}	
+			}
 		}
 	}
 
-	
 	public void editEntity(Entity note) {
 
 		Transaction tx = null;

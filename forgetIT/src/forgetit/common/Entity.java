@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  * 
@@ -25,12 +26,14 @@ public class Entity {
 
 	private Status status;
 
-	@ManyToOne
+	@OneToOne(mappedBy = "entity_id")
 	private Function priority;
+	@ManyToOne
 	private Date startDate;
+	@ManyToOne
 	private Date endDate;
 
-	@OneToMany
+	@OneToMany(mappedBy = "entity_id")
 	private List<Tag> tags;
 
 	@OneToMany
@@ -38,78 +41,97 @@ public class Entity {
 	private Category category;
 
 	public String getTitle() {
+
 		return title;
 	}
 
 	public void setTitle(String title) {
+
 		this.title = title;
 	}
 
 	public String getDescription() {
+
 		return description;
 	}
 
 	public void setDescription(String description) {
+
 		this.description = description;
 	}
 
 	public Status getStatus() {
+
 		return status;
 	}
 
 	public void setStatus(Status status) {
+
 		this.status = status;
 	}
 
 	public Function getPriority() {
+
 		return priority;
 	}
 
 	public void setPriority(Function priority) {
+
 		this.priority = priority;
 	}
 
 	public Date getStartDate() {
+
 		return startDate;
 	}
 
 	public void setStartDate(Date startDate) {
+
 		this.startDate = startDate;
 	}
 
 	public Date getEndDate() {
+
 		return endDate;
 	}
 
 	public void setEndDate(Date endDate) {
+
 		this.endDate = endDate;
 	}
 
 	public List<Tag> getTags() {
+
 		return tags;
 	}
 
 	public void setTags(List<Tag> tags) {
+
 		this.tags = tags;
 	}
 
 	public List<Entity> getDependencies() {
+
 		return dependencies;
 	}
 
 	public void setDependencies(List<Entity> dependencies) {
+
 		this.dependencies = dependencies;
 	}
 
 	public int getId() {
+
 		return id;
 	}
 
 	public Category getCategory() {
+
 		return category;
 	}
 
 	public void setCategory(Category category) {
+
 		this.category = category;
 	}
 
