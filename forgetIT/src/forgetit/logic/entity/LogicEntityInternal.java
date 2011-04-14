@@ -18,26 +18,50 @@ public class LogicEntityInternal implements ILogicInternalEntity{
 	private DBEntityHandler dbEntity;
 	
 	public LogicEntityInternal(){
-		dbEntity = new DBEntityHandler();
+		try{
+			dbEntity = new DBEntityHandler();
+		}catch(Exception e){
+			System.err.println("Can't initiate DBEntityHandler");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void addEntity(Entity entity) {
 		//TODO add check input
-		dbEntity.addEntity(entity);
+		try{
+			dbEntity.addEntity(entity);
+		}catch(Exception e){
+			System.err.println("Can't add Entity");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void deleteEntity(Entity entity) {
 		//TODO check input
-		dbEntity.deleteEntity(entity);
+		try{
+			dbEntity.deleteEntity(entity);
+		}catch(Exception e){
+			System.err.println("Can't delete Entity");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void changeEntity(Entity entity) {
 		//TODO check input
-		dbEntity.editEntity(entity);
+		try{
+			dbEntity.editEntity(entity);
+		}catch(Exception e){
+			System.err.println("Can't change Entity");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 		
 	}
 

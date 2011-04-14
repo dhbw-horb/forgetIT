@@ -21,30 +21,64 @@ public class LogicEntityProviderInternal implements ILogicInternalEntityProvider
 	private IDBEntityProvider dbNoteProvider;
 	
 	public LogicEntityProviderInternal(){
-		dbNoteProvider = new DBEntityProvider();
+		try{
+			dbNoteProvider = new DBEntityProvider();
+		}catch(Exception e){
+			System.err.println("Can't instantiate DBEntityProvider");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public List<Entity> getEntities() {
-		return dbNoteProvider.getEntities();
+		try{
+			return dbNoteProvider.getEntities();
+		}catch(Exception e){
+			System.err.println("Can't get Entities");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public List<Entity> getEntities(Date startDate, Date endDate) {
 		//TODO check input
-		return dbNoteProvider.getEntities(startDate, endDate);
+		try{
+			return dbNoteProvider.getEntities(startDate, endDate);
+		}catch(Exception e){
+			System.err.println("Can't get Entities");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public List<Entity> getEntities(Date startDate, Date endDate, List<Tag> tags) {
 		// TODO check input
+		try{
 		return dbNoteProvider.getEntities(startDate, endDate, tags);
+			}catch(Exception e){
+			System.err.println("Can't get Entities");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public List<Entity> getEntities(List<Tag> tags) {
 		// TODO check input
-		return dbNoteProvider.getEntities(tags);
+		try{
+			return dbNoteProvider.getEntities(tags);
+		}catch(Exception e){
+			System.err.println("Can't get Entities");
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
