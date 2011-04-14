@@ -10,7 +10,6 @@ import org.eclipse.swt.widgets.Text;
 import forgetit.common.Category;
 import forgetit.common.Date;
 import forgetit.common.Entity;
-import forgetit.common.Function;
 import forgetit.common.Tag;
 import forgetit.gui.views.IEntitiesView;
 import forgetit.logic.Calendar;
@@ -136,43 +135,7 @@ public class GraphicsController {
 		if(entities == null) {
 			return;
 		}
-		
-		// TODO delete dummy
-		/*// dummy
-		List<Entity> entities = new LinkedList<Entity>();
-		Function func = new Function();
-		List<Integer> coef = new LinkedList<Integer>();
-		coef.add(1);
-		func.setCoefficients(coef);
-		List<Tag> tags = new LinkedList<Tag>();
-		tags.add(new Tag(0, "DHBW", "DHBW Horb"));
-		for(int i = 0; i < 3; i++) {
-			Entity entity = new Entity();
-			entity.setTitle("TestTodo "+i);
-			entity.setCategory(Category.TODO);
-			entity.setPriority(func);
-			entity.setTags(tags);
-			entities.add(entity);
-		}
-		for(int i = 0; i < 3; i++) {
-			Entity entity = new Entity();
-			entity.setTitle("TestCal "+i);
-			entity.setCategory(Category.APPOINTMENT);
-			entity.setStartDate(new Date(2011, 04, 12, 12, 34));
-			entity.setEndDate(new Date(2011, 04, 13, 12, 34));
-			entity.setTags(tags);
-			entities.add(entity);
-		}
-		for(int i = 0; i < 3; i++) {
-			Entity entity = new Entity();
-			entity.setTitle("TestNotes "+i);
-			entity.setCategory(Category.NOTE);
-			entity.setDescription("I am a test");
-			entity.setTags(tags);
-			entities.add(entity);
-		}
-		// End of dummy
-		
+
 		// iterate over all views
 		for(IEntitiesView view : entitiesViews) {
 			// only use the compatible entities for the view
@@ -185,7 +148,7 @@ public class GraphicsController {
 			}
 			// refresh the view
 			view.refreshView(entitiesForView);
-		}*/
+		}
 	}
 	
 	public void waitForDispose() {

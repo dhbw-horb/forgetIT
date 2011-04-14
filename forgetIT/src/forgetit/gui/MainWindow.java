@@ -1,8 +1,5 @@
 package forgetit.gui;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -16,10 +13,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import forgetit.common.Category;
 import forgetit.common.Entity;
-import forgetit.common.Function;
-import forgetit.common.Tag;
+import forgetit.gui.dialogs.AddEntityDialog;
 import forgetit.gui.views.ViewCalendar;
 import forgetit.gui.views.ViewDate;
 import forgetit.gui.views.ViewNotes;
@@ -72,22 +67,13 @@ public class MainWindow {
 		add.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-                // TODO show Dialog for adding entities and delete dummy
-            	
-            	// dummy
-            	Function func = new Function();
-        		List<Integer> coef = new LinkedList<Integer>();
-        		coef.add(1);
-        		func.setCoefficients(coef);        		
-    			Entity entity = new Entity();
-    			entity.setTitle("Test");
-    			entity.setCategory(Category.TODO);
-    			entity.setPriority(func);
-    			List<Tag> tags = new LinkedList<Tag>();
-    			tags.add(new Tag(0, "Study", "Description of Study"));
-    			entity.setTags(tags);
-            	controller.addEntity(entity);
-            	// end of dummy
+                // show dialog for adding entities
+            	AddEntityDialog dialog = new AddEntityDialog(shell);
+            	Entity entity = dialog.open();
+            	if(entity != null) {
+            		controller.addEntity(entity);
+            		controller.refreshViews();
+            	}
             }
         });		
 		

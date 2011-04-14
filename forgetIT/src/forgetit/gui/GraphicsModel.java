@@ -3,9 +3,6 @@ package forgetit.gui;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.TableColumn;
-
 import forgetit.common.Date;
 import forgetit.common.Entity;
 import forgetit.common.Tag;
