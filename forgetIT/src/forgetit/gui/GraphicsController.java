@@ -60,6 +60,8 @@ public class GraphicsController {
 		display = new Display();
 		mainWindow = new MainWindow(display, this);
 		
+		// show the current entities
+		refreshViews();
 	}
 	
 	public void addTagButton(Button btn) {
