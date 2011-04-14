@@ -1,4 +1,4 @@
-package forgetit.logic.entity;
+package forgetit.logic.tag;
 
 import java.util.List;
 
