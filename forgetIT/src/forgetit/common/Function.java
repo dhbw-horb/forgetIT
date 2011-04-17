@@ -42,7 +42,12 @@ public class Function {
 	public int getY(int x) {
 
 		// TODO implement
-		return 0;
+		try {
+			// static priority
+			return coefficients.get(0);
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 
 }
