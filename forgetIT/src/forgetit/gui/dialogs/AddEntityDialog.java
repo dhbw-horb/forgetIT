@@ -24,6 +24,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
@@ -68,9 +69,9 @@ public class AddEntityDialog extends Dialog {
 
 		shell.setLayout(new GridLayout(2, true));
 
-		
-		inputFieldTitle();
-		inputFieldDescription();
+		inputCategory();
+		inputTitle();
+		inputDescription();
 		buttons();
 		
 		// TODO delete dummy and replace it
@@ -78,7 +79,6 @@ public class AddEntityDialog extends Dialog {
 		List<Integer> coef = new LinkedList<Integer>();
 		coef.add(1);
 		func.setCoefficients(coef);    
-		entity.setTitle("Test");
 		entity.setCategory(Category.TODO);
 		entity.setPriority(func);
 		List<Tag> tags = new LinkedList<Tag>();
@@ -103,8 +103,35 @@ public class AddEntityDialog extends Dialog {
 		}
 		return entity;
 	}
+	
+	private void inputCategory() {		
+		Label label = new Label(shell, SWT.NULL);
+		label.setText("Title:");
+		
+		final Combo combo = new Combo (shell, SWT.DROP_DOWN | SWT.READ_ONLY);
+		combo.setItems(new String [] {"Appointment", "Todo", "Note"});
+		combo.select(0);
+		entity.setCategory(Category.APPOINTMENT);
 
-	private void inputFieldTitle() {
+		combo.addListener(SWT.Selection, new Listener () {
+			public void handleEvent (Event e) {
+				int index = combo.indexOf(combo.getText());
+				switch(index) {
+				case 0:
+					entity.setCategory(Category.APPOINTMENT);
+					break;
+				case 1:
+					entity.setCategory(Category.TODO);
+					break;
+				case 2:
+					entity.setCategory(Category.NOTE);
+					break;
+				}
+			}
+		});
+	}
+
+	private void inputTitle() {
 		Label label = new Label(shell, SWT.NULL);
 		label.setText("Title:");
 
@@ -118,7 +145,7 @@ public class AddEntityDialog extends Dialog {
 		});
 	}
 	
-	private void inputFieldDescription() {
+	private void inputDescription() {
 		Label label = new Label(shell, SWT.NULL);
 		label.setText("Description:");
 
