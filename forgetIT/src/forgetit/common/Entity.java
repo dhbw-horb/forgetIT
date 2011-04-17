@@ -1,10 +1,15 @@
 package forgetit.common;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -16,27 +21,22 @@ import javax.persistence.OneToOne;
  */
 
 @javax.persistence.Entity
-public class Entity {
+public class Entity implements Serializable {
 
-	@Id
-	@GeneratedValue
 	private int id;
 	private String title;
 	private String description;
 
 	private Status status;
 
-	@OneToOne(mappedBy = "entity_id")
 	private Function priority;
-	@OneToOne(mappedBy = "entity_id")
+
 	private Date startDate;
-	@OneToOne(mappedBy = "entity_id")
+
 	private Date endDate;
 
-	@OneToMany(mappedBy = "entity_id")
 	private List<Tag> tags;
 
-	@OneToMany
 	private List<Entity> dependencies; // All notes, that have to happen before
 	private Category category;
 
@@ -81,6 +81,7 @@ public class Entity {
 		this.status = status;
 	}
 
+	@OneToOne(mappedBy = "entity_id")
 	public Function getPriority() {
 
 		if (priority == null) {
@@ -94,6 +95,7 @@ public class Entity {
 		this.priority = priority;
 	}
 
+	@OneToOne(mappedBy = "entity_id")
 	public Date getStartDate() {
 
 		return startDate;
@@ -104,6 +106,7 @@ public class Entity {
 		this.startDate = startDate;
 	}
 
+	@OneToOne(mappedBy = "entity_id")
 	public Date getEndDate() {
 
 		return endDate;
@@ -114,6 +117,9 @@ public class Entity {
 		this.endDate = endDate;
 	}
 
+	@ManyToMany(targetEntity = forgetit.common.Tag.class, cascade = { CascadeType.ALL, CascadeType.PERSIST,
+			CascadeType.MERGE })
+	@JoinTable(name = "ENTITY_TAG", joinColumns = @JoinColumn(name = "ENTITY_ID"), inverseJoinColumns = @JoinColumn(name = "TAG_ID"))
 	public List<Tag> getTags() {
 
 		return tags;
@@ -124,6 +130,7 @@ public class Entity {
 		this.tags = tags;
 	}
 
+	@OneToMany
 	public List<Entity> getDependencies() {
 
 		return dependencies;
@@ -134,6 +141,8 @@ public class Entity {
 		this.dependencies = dependencies;
 	}
 
+	@Id
+	@GeneratedValue
 	public int getId() {
 
 		return id;
@@ -147,6 +156,11 @@ public class Entity {
 	public void setCategory(Category category) {
 
 		this.category = category;
+	}
+
+	public void setId(int id) {
+
+		this.id = id;
 	}
 
 }
