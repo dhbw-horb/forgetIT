@@ -118,21 +118,25 @@ public class Calendar implements ICalendar {
 
 	@Override
 	public String convertDateToStringInUSStyle(Date date) {
+		if(date == null) {
+			return "1970-01-01";
+		}
+		
 		// year
 		String str = "" + date.getYear();
 		
 		// month
 		if(date.getMonth() <= 9) {
-			str += ".0" + date.getMonth();
+			str += "-0" + date.getMonth();
 		} else {
-			str += "." + date.getMonth();
+			str += "-" + date.getMonth();
 		}
 		
 		// day
 		if(date.getDay() <= 9) {
-			str += ".0" + date.getDay();
+			str += "-0" + date.getDay();
 		} else {
-			str += "." + date.getDay();
+			str += "-" + date.getDay();
 		}
 		
 		return str;
@@ -140,6 +144,10 @@ public class Calendar implements ICalendar {
 
 	@Override
 	public String convertDateToStringInGermanStyle(Date date) {
+		if(date == null) {
+			return "01.01.1970";
+		}
+		
 		String str = "";
 		
 		// day

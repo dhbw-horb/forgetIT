@@ -34,9 +34,11 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import forgetit.common.Category;
+import forgetit.common.Date;
 import forgetit.common.Entity;
 import forgetit.common.Function;
 import forgetit.common.Tag;
+import forgetit.logic.Calendar;
 
 /**
  * A dialog for adding entities
@@ -48,6 +50,8 @@ public class AddEntityDialog extends Dialog {
 
 	private Shell shell = null;
 	private Entity entity = null;
+	private String startDate = null;
+	private String endDate = null;
 
 	/**
 	 * @param parent
@@ -55,6 +59,8 @@ public class AddEntityDialog extends Dialog {
 	public AddEntityDialog(Shell parent) {
 		super(parent);
 		entity = new Entity();
+		startDate = "";
+		endDate = "";
 	}
 
 	/**
@@ -72,6 +78,9 @@ public class AddEntityDialog extends Dialog {
 		inputCategory();
 		inputTitle();
 		inputDescription();
+		inputStartDate();
+		inputEndDate();
+		inputTags();
 		buttons();
 		
 		// TODO delete dummy and replace it
@@ -79,11 +88,7 @@ public class AddEntityDialog extends Dialog {
 		List<Integer> coef = new LinkedList<Integer>();
 		coef.add(1);
 		func.setCoefficients(coef);    
-		entity.setCategory(Category.TODO);
 		entity.setPriority(func);
-		List<Tag> tags = new LinkedList<Tag>();
-		tags.add(new Tag(0, "Study", "Description of Study"));
-		entity.setTags(tags);
 		// End of dummy
 
 		shell.addListener(SWT.Traverse, new Listener() {
@@ -98,6 +103,24 @@ public class AddEntityDialog extends Dialog {
 
 		Display display = parent.getDisplay();
 		while (!shell.isDisposed()) {
+			// check dates
+			Calendar cal = new Calendar();
+			// startDate
+			try {
+				Date newDate = cal.convertStringToDate(startDate);
+				entity.setStartDate(newDate);
+			} catch (Exception e) {
+				entity.setStartDate(cal.today());
+			}
+			// endDate
+			try {
+				Date newDate = cal.convertStringToDate(endDate);
+				// TODO check if endDate is after startDate
+				entity.setEndDate(newDate);
+			} catch (Exception e) {
+				entity.setEndDate(entity.getStartDate());
+			}
+			
 			if (!display.readAndDispatch())
 				display.sleep();
 		}
@@ -106,7 +129,7 @@ public class AddEntityDialog extends Dialog {
 	
 	private void inputCategory() {		
 		Label label = new Label(shell, SWT.NULL);
-		label.setText("Title:");
+		label.setText("Category:");
 		
 		final Combo combo = new Combo (shell, SWT.DROP_DOWN | SWT.READ_ONLY);
 		combo.setItems(new String [] {"Appointment", "Todo", "Note"});
@@ -137,6 +160,7 @@ public class AddEntityDialog extends Dialog {
 
 		final Text text = new Text(shell, SWT.SINGLE | SWT.BORDER);
 		text.setText("");
+		entity.setTitle("");
 
 		text.addListener(SWT.Modify, new Listener() {
 			public void handleEvent(Event event) {
@@ -151,10 +175,80 @@ public class AddEntityDialog extends Dialog {
 
 		final Text text = new Text(shell, SWT.SINGLE | SWT.BORDER);
 		text.setText("");
+		entity.setDescription("");
 
 		text.addListener(SWT.Modify, new Listener() {
 			public void handleEvent(Event event) {
 				entity.setDescription(text.getText());
+			}
+		});
+	}
+	
+	private void inputStartDate() {
+		Label label = new Label(shell, SWT.NULL);
+		label.setText("Start:");
+
+		final Text text = new Text(shell, SWT.SINGLE | SWT.BORDER);
+		Calendar cal = new Calendar();
+		entity.setStartDate(cal.today());
+		text.setText(cal.convertDateToStringInGermanStyle(entity.getStartDate()));
+		startDate = text.getText();
+
+		text.addListener(SWT.Modify, new Listener() {
+			public void handleEvent(Event event) {
+				startDate = text.getText();
+			}
+		});
+	}
+	
+	private void inputEndDate() {
+		Label label = new Label(shell, SWT.NULL);
+		label.setText("End:");
+
+		final Text text = new Text(shell, SWT.SINGLE | SWT.BORDER);
+		Calendar cal = new Calendar();
+		entity.setEndDate(cal.today());
+		text.setText(cal.convertDateToStringInGermanStyle(entity.getEndDate()));
+		endDate = text.getText();
+
+		text.addListener(SWT.Modify, new Listener() {
+			public void handleEvent(Event event) {
+				endDate = text.getText();
+			}
+		});
+	}
+	
+	private void inputTags() {		
+		Label label = new Label(shell, SWT.NULL);
+		label.setText("Tags:");
+		
+		final Combo combo = new Combo (shell, SWT.DROP_DOWN | SWT.READ_ONLY);
+		combo.setItems(new String [] {"Study", "Work", "Personal"});
+		combo.select(0);
+		final List<Tag> tags = new LinkedList<Tag>();
+		tags.add(new Tag(0, "Study", "Description of Study"));
+		entity.setTags(tags);
+
+		combo.addListener(SWT.Selection, new Listener () {
+			public void handleEvent (Event e) {
+				int index = combo.indexOf(combo.getText());
+				switch(index) {
+				case 0:
+					tags.clear();
+					tags.add(new Tag(0, "Study", "Description of Study"));
+					entity.setTags(tags);
+					break;
+				case 1:
+					tags.clear();
+					tags.add(new Tag(1, "Work", "Description of Work"));
+					entity.setTags(tags);
+					break;
+				case 2:
+					tags.clear();
+					tags.add(new Tag(2, "Personal", "Description of Personal"));
+					entity.setTags(tags);
+					break;
+				}
 			}
 		});
 	}
