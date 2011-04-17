@@ -31,6 +31,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 
 import forgetit.common.Category;
@@ -80,16 +81,9 @@ public class AddEntityDialog extends Dialog {
 		inputDescription();
 		inputStartDate();
 		inputEndDate();
+		inputPriority();
 		inputTags();
 		buttons();
-		
-		// TODO delete dummy and replace it
-		Function func = new Function();
-		List<Integer> coef = new LinkedList<Integer>();
-		coef.add(1);
-		func.setCoefficients(coef);    
-		entity.setPriority(func);
-		// End of dummy
 
 		shell.addListener(SWT.Traverse, new Listener() {
 			public void handleEvent(Event event) {
@@ -214,6 +208,33 @@ public class AddEntityDialog extends Dialog {
 		text.addListener(SWT.Modify, new Listener() {
 			public void handleEvent(Event event) {
 				endDate = text.getText();
+			}
+		});
+	}
+	
+	private void inputPriority() {
+		Label label = new Label(shell, SWT.NULL);
+		label.setText("Priority:");
+		
+		final Spinner spinner = new Spinner (shell, SWT.BORDER);
+		spinner.setMinimum(0);
+		spinner.setMaximum(10);
+		spinner.setSelection(1);
+		spinner.setIncrement(1);
+		spinner.setPageIncrement(1);
+		
+		final Function func = new Function();
+		final List<Integer> coef = new LinkedList<Integer>();
+		coef.add(spinner.getSelection());
+		func.setCoefficients(coef);    
+		entity.setPriority(func);
+
+		spinner.addListener(SWT.Modify, new Listener() {
+			public void handleEvent(Event event) {
+				coef.clear();
+				coef.add(spinner.getSelection());
+				func.setCoefficients(coef);    
+				entity.setPriority(func);
 			}
 		});
 	}
