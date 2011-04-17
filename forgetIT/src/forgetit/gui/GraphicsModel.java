@@ -125,6 +125,12 @@ public class GraphicsModel {
 		logicNotes.deleteEntity(entity);
 	}
 	
+	public void deleteAllEntities() {
+		for(Entity entity : provider.getEntities()) {
+			logicNotes.deleteEntity(entity);	
+		}
+	}
+	
 	public void changeEntity(Entity entity) {
 		logicNotes.changeEntity(entity);
 	}

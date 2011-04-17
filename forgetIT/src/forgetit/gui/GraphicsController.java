@@ -60,6 +60,8 @@ public class GraphicsController {
 		display = new Display();
 		mainWindow = new MainWindow(display, this);
 		
+		// show the current entities
+		refreshViews();
 	}
 	
 	public void addTagButton(Button btn) {
@@ -133,7 +135,13 @@ public class GraphicsController {
 	}
 	
 	public void addEntity(Entity entity) {
-		model.addEntity(entity);		
+		model.addEntity(entity);	
+		refreshViews();
+	}
+	
+	public void deleteAllEntities() {
+		model.deleteAllEntities();
+		refreshViews();
 	}
 	
 	public String getToday() {
