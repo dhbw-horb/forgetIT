@@ -20,6 +20,7 @@ package forgetit.gui.views;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
@@ -62,6 +63,7 @@ public class ViewTodo extends StandardView implements IEntitiesView {
 		table.setHeaderVisible (true);
 		table.setVisible(false);
 		
+		
 		// set titles of the table
 		String[] titles = {"Title", "Priority"};
 		for (int i=0; i < titles.length; i++) {
@@ -80,8 +82,8 @@ public class ViewTodo extends StandardView implements IEntitiesView {
 			table.setVisible(true);
 		}
 		
-		// clear content of the table
-		table.clearAll();
+		// remove content of the table
+		table.removeAll();
 		
 		// set new content of the table
 		for (Entity entity : entities) {

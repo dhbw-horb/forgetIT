@@ -80,8 +80,8 @@ public class ViewCalendar extends StandardView implements IEntitiesView {
 			table.setVisible(true);
 		}
 		
-		// clear content of the table
-		table.clearAll();
+		// remove content of the table
+		table.removeAll();
 		
 		// set content of the table
 		Calendar cal = new Calendar();
