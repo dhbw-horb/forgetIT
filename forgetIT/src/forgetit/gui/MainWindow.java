@@ -78,7 +78,7 @@ public class MainWindow {
 	private void initFirstRow() {
 		// searchBar
 		GridData gridData = new GridData(GridData.FILL, GridData.FILL, true, false);
-		gridData.horizontalSpan = 6;
+		gridData.horizontalSpan = 5;
 		Text text = new Text(shell, SWT.SINGLE);		
 		text.setLayoutData(gridData);
 		
@@ -95,10 +95,22 @@ public class MainWindow {
             	Entity entity = dialog.open();
             	if(entity != null) {
             		controller.addEntity(entity);
-            		controller.refreshViews();
             	}
             }
-        });		
+        });	
+		
+		// delete entities button
+		gridData = new GridData(GridData.END, GridData.END, false, false);
+		Button delete = new Button(shell, SWT.PUSH);
+		delete.setLayoutData(gridData);
+		delete.setImage(new Image(shell.getDisplay(), "res/deleteIcon.png"));
+		delete.addSelectionListener(new SelectionAdapter() {
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                // remove all entities
+            	controller.deleteAllEntities();
+            }
+        });	
 		
 		// settings button
 		gridData = new GridData(GridData.END, GridData.END, false, false);

@@ -135,7 +135,13 @@ public class GraphicsController {
 	}
 	
 	public void addEntity(Entity entity) {
-		model.addEntity(entity);		
+		model.addEntity(entity);	
+		refreshViews();
+	}
+	
+	public void deleteAllEntities() {
+		model.deleteAllEntities();
+		refreshViews();
 	}
 	
 	public String getToday() {
