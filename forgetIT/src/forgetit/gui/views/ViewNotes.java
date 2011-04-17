@@ -20,6 +20,8 @@ package forgetit.gui.views;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
@@ -51,8 +53,8 @@ public class ViewNotes extends StandardView implements IEntitiesView {
 	}
 
 	private void initGui() {
-		RowLayout layout = new RowLayout();
-		layout.type = SWT.VERTICAL;
+		GridLayout layout = new GridLayout();
+		layout.numColumns = 1;
 		content.setLayout(layout);
 		
 		// init a new table
@@ -60,6 +62,8 @@ public class ViewNotes extends StandardView implements IEntitiesView {
 		table.setLinesVisible (true);
 		table.setHeaderVisible (true);
 		table.setVisible(false);
+		GridData gridData = new GridData(GridData.FILL, GridData.FILL, true, true);
+		table.setLayoutData(gridData);
 		
 		// set titles of the table
 		String[] titles = {"Title", "Description"};

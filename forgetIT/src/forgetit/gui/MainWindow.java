@@ -58,7 +58,7 @@ public class MainWindow {
 		// main window
 		shell = new Shell(display);
 		shell.setText("forgetIT");
-		
+				
 		// define outter layout
 		GridLayout outterLayout = new GridLayout();		
 		outterLayout.numColumns = 8;
@@ -71,6 +71,7 @@ public class MainWindow {
 
 		// resize shell to contents
         shell.pack();
+        shell.setSize(600, 600);
         // open shell
 		shell.open();
 	}
