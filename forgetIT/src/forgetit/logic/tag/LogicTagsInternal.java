@@ -23,11 +23,9 @@ import forgetit.db.DBTags;
 import forgetit.db.IDBTags;
 import forgetit.logic.interfaces.ILogicInternalTags;
 /**
- * 
- * @author David Henn
- * @date 2.3.2011
- * Implementation of ILogicInternalTags
- * @see ILogicInternalTags
+ * Implementation of @see ILogicInternalTags
+ * @author David Henn (<a href="mailto:[david.henn@gmail.com]">david.henn@gmail.com</a>)
+ * @version 0.1
  *
  */
 public class LogicTagsInternal implements ILogicInternalTags {

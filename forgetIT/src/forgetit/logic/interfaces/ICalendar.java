@@ -19,9 +19,10 @@ package forgetit.logic.interfaces;
 import forgetit.common.Date;
 
 /**
- * 
- * @author David Henn
  * this interface provides access to date calculations
+ * @author David Henn (<a href="mailto:[david.henn@gmail.com]">david.henn@gmail.com</a>)
+ * @version 0.1
+ * 
  *
  */
 public interface ICalendar {

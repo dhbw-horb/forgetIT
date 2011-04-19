@@ -19,10 +19,10 @@ package forgetit.logic;
 import forgetit.common.Entity;
 
 /**
- * 
- * @author David Henn
- * @date 1.3.2011
  * This Interface provides methods to manage entities
+ * @author David Henn (<a href="mailto:[david.henn@gmail.com]">david.henn@gmail.com</a>)
+ * @version 0.1
+ * 
  *
  */
 

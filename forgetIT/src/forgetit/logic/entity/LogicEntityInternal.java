@@ -24,11 +24,11 @@ import forgetit.logic.LogicEntity;
 import forgetit.logic.interfaces.ILogicInternalEntity;
 
 /**
- * 
- * @author David Henn
- * @date 2.3.2011
  * implementation of @see ILogicInternalEntity
- * @see ILogicInternalEntity
+ * 
+ * @author David Henn (<a href="mailto:[david.henn@gmail.com]">david.henn@gmail.com</a>)
+ * @version 0.1
+ * 
  */
 public class LogicEntityInternal implements ILogicInternalEntity{
 	

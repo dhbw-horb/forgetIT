@@ -23,12 +23,9 @@ import forgetit.logic.interfaces.ILogicInternalTags;
 import forgetit.logic.tag.LogicTagsInternal;
 
 /**
- * 
- * @author David Henn
- * @date 1.3.2011
- * Implementation of ILogicTags
- * @see ILogicTags
- *
+ * Implementation of @see ILogicTags
+ * @author David Henn (<a href="mailto:[david.henn@gmail.com]">david.henn@gmail.com</a>)
+ * @version 0.1
  */
 public class LogicTags implements ILogicTags {
 	

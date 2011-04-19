@@ -22,10 +22,9 @@ import forgetit.logic.interfaces.ILogicInternalEntity;
 
 /**
  * 
- * @author David Henn
- * @date 1.3.2011
- * Implementation of ILogicEntity
- * @see ILogicEntity
+ * Implementation of @see ILogicEntity
+ * @author David Henn (<a href="mailto:[david.henn@gmail.com]">david.henn@gmail.com</a>)
+ * @version 0.1
  *
  */
 

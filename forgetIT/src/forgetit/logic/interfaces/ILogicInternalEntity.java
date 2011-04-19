@@ -19,11 +19,10 @@ package forgetit.logic.interfaces;
 import forgetit.common.Entity;
 
 /**
- * 
- * @author David Henn
- * @date 1.3.2011
  * internal interface to be free from @see ILogicEntity
- *
+ * @author David Henn (<a href="mailto:[david.henn@gmail.com]">david.henn@gmail.com</a>)
+ * @version 0.1
+ * 
  */
 public interface ILogicInternalEntity {
 	/**

@@ -27,12 +27,10 @@ import forgetit.logic.entity.LogicEntityProviderInternal;
 import forgetit.logic.interfaces.ILogicInternalEntityProvider;
 
 
-/**
- * 
- * @author David Henn
- * @date 1.3.2011
- * Implementation of ILogicEntityProvider
- * @see ILogicEntityProvider
+/** 
+ * Implementation of @see ILogicEntityProvider
+ * @author David Henn (<a href="mailto:[david.henn@gmail.com]">david.henn@gmail.com</a>)
+ * @version 0.1
  *
  */
 public class LogicEntityProvider implements ILogicEntityProvider {

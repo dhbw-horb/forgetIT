@@ -21,10 +21,10 @@ import java.util.List;
 import forgetit.common.Tag;
 
 /**
- * 
- * @author David Henn
- * @date 1.3.2011
  * internal interface to be free from ILogicNote
+ * @author David Henn (<a href="mailto:[david.henn@gmail.com]">david.henn@gmail.com</a>)
+ * @version 0.1
+ * 
  *
  */
 public interface ILogicInternalTags {

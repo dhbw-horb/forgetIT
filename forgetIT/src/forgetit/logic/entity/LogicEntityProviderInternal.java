@@ -26,11 +26,9 @@ import forgetit.db.IDBEntityProvider;
 import forgetit.logic.interfaces.ILogicInternalEntityProvider;
 
 /**
- * 
- * @author David Henn
- * @date 2.3.2011
  * Implementation of @see ILogicInternalEntityProvider
- * @see ILogicInternalEntityProvider
+ * @author David Henn (<a href="mailto:[david.henn@gmail.com]">david.henn@gmail.com</a>)
+ * @version 0.1
  */
 public class LogicEntityProviderInternal implements ILogicInternalEntityProvider {
 	

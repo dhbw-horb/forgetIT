@@ -22,8 +22,13 @@ import java.util.TimeZone;
 import forgetit.common.Date;
 import forgetit.logic.interfaces.ICalendar;
 
-public class Calendar implements ICalendar {
+/**
+ * Implementation of @see ICalendar
+ * @author David Henn (<a href="mailto:[david.henn@gmail.com]">david.henn@gmail.com</a>)
+ * @version 0.1
+ */
 
+public class Calendar implements ICalendar {
 	@Override
 	public boolean checkDate(Date date) {
 		GregorianCalendar cal = new GregorianCalendar();
